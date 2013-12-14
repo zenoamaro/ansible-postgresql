@@ -3,8 +3,12 @@ PostgreSQL role for Ansible
 
 A role for deploying and configuring [PostgreSQL](http://www.postgresql.org/) and extensions on unix hosts using [Ansible](http://www.ansibleworks.com/).
 
+It can additionally be used as a playbook for quickly provisioning hosts.
 
-Features
+Vagrant machines are provided to produce a boxed install of PostgreSQL or a VM for integration testing.
+
+
+Supports
 --------
 
 Supported PostgreSQL versions:
