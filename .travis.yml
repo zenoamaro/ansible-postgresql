@@ -1,6 +1,15 @@
 ---
 
-language: python
+# Configuration directives for Travis CI
+# --------------------------------------
+
+# See the Travis documentation for help on writing this file.
+
+# [Travis CI] http://travis-ci.org
+# [configuration] http://about.travis-ci.org/docs/user/build-configuration/
+
+
+language: python  # Needed to run ansible
 
 python:
   - "2.7"
@@ -9,8 +18,9 @@ install:
   - pip install ansible
 
 script:
+  # Syntax check every ansible playbook in root
   - find . -name '*.yml' -depth 1 -not -name '.*' | xargs -t -n1 ansible-playbook --syntax-check -i inventory
 
 notifications:
   email:
-    - zenoamaro+travis@gmail.com
+    - zenoamaro@gmail.com
