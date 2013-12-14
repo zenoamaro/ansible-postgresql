@@ -36,6 +36,3 @@
     - postgresql
     - db
     - conf
-
-# Restart PostgreSQL now
-- meta: flush_handlers

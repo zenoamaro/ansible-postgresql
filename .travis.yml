@@ -19,7 +19,9 @@ install:
 
 script:
   # Syntax check every ansible playbook in root
-  - find . -name '*.yml' -depth 1 -not -name '.*' | xargs -t -n1 ansible-playbook --syntax-check -i inventory
+  # Don't check main, though, as vars_prompt still
+  # trigger during syntax checks, and travis fails
+  - find . -maxdepth 1 -type f -name '*.yml' -not -name '.*' -not -name 'main.yml' | xargs -t -n1 ansible-playbook --syntax-check -i inventory
 
 notifications:
   email:
