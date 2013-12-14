@@ -1,0 +1,25 @@
+---
+
+# A playbook for testing and integration.
+
+- name: 'Ansible PostgreSQL role tests'
+
+  hosts: test
+
+  vars:
+    # Test the full suite
+    postgresql_dev_headers: yes
+    postgresql_contrib: yes
+    postgresql_postgis: yes
+    postgresql_python: yes
+
+  pre_tasks:
+    # Most vagrant boxes have outdated repositories
+    - name: APT update
+      sudo: yes
+      apt: update_cache=yes
+
+  roles:
+    # The current directory is the actual role
+    - .
+

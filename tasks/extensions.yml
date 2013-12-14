@@ -1,0 +1,62 @@
+---
+
+
+# Development headers and libraries
+# ---------------------------------
+
+- name: Install development headers
+  when: postgresql_dev_headers == True
+  sudo: yes
+  apt:
+    name: libpq-dev
+  tags:
+    - postgresql
+    - db
+    - deps
+    - dev
+
+
+# Contributed extensions
+# ----------------------
+
+- name: Install PostgreSQL contribs
+  when: postgresql_contrib
+  sudo: yes
+  apt:
+    name: "postgresql-contrib-{{postgresql_version}}"
+  tags:
+    - postgresql
+    - db
+    - deps
+
+
+# PostGIS
+# -------
+
+- name: Add postgis extensions
+  when: postgresql_postgis
+  sudo: yes
+  apt:
+    name: "{{item}}"
+  with_items:
+    - "postgresql-{{postgresql_version}}-postgis-{{postgresql_postgis_version}}"
+    - libgeos-c1
+  tags:
+    - postgresql
+    - db
+    - deps
+
+
+# psycopg2
+# --------
+
+- name: Install the python driver
+  when: postgresql_psycopg2
+  sudo: yes
+  pip:
+    name: psycopg2
+  tags:
+    - postgresql
+    - db
+    - python
+    - deps

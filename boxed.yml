@@ -1,0 +1,27 @@
+---
+
+# Simple, straight playbook for boxed PostgreSQL installs
+
+- name: 'PostgreSQL boxed installation'
+
+  hosts: vagrant
+
+  pre_tasks:
+    # Better safe than sorry
+    - name: APT update
+      sudo: yes
+      apt: update_cache=yes
+
+  vars:
+    postgresql_listen_addresses:
+      - '*'
+    postgresql_authentication:
+      - type: host
+        user: all
+        database: all
+        address: '0.0.0.0/0'
+        method: trust
+
+  roles:
+    - .
+

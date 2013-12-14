@@ -1,0 +1,20 @@
+---
+
+# Simple, straight playbook for quick PostgreSQL installs
+
+- name: 'PostgreSQL'
+
+  vars_prompt:
+    selected_hosts: Specify the hosts to provision
+
+  hosts: "{{selected_hosts}}"
+
+  pre_tasks:
+    # Better safe than sorry
+    - name: APT update
+      sudo: yes
+      apt: update_cache=yes
+
+  roles:
+    - .
+

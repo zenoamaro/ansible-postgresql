@@ -1,0 +1,16 @@
+---
+
+language: python
+
+python:
+  - "2.7"
+
+install:
+  - pip install ansible
+
+script:
+  - find . -name '*.yml' -depth 1 -not -name '.*' | xargs -t -n1 ansible-playbook --syntax-check -i inventory
+
+notifications:
+  email:
+    - zenoamaro+travis@gmail.com

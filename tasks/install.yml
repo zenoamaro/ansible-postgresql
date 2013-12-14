@@ -1,0 +1,43 @@
+---
+
+# Official PostgreSQL [repository] for debian-based distributions
+# [repository]: http://www.postgresql.org/download/
+
+# TODO: Don't hardcode an apt repo.
+
+- name: Add PostgreSQL official APT repository
+  sudo: yes
+  apt_repository:
+    repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ansible_distribution_release}}-pgdg main"
+  tags:
+    - postgresql
+    - db
+    - repo
+
+- name: Adding APT repository key
+  sudo: yes
+  apt_key:
+    id: ACCC4CF8
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+  tags:
+    - postgresql
+    - db
+    - repo
+
+- name: APT update
+  sudo: yes
+  apt:
+    update_cache: yes
+  tags:
+    - postgresql
+    - db
+    - repo
+
+- name: Install PostgreSQL
+  sudo: yes
+  apt:
+    name: "postgresql-{{postgresql_version}}"
+  tags:
+    - postgresql
+    - db
+    - deps
