@@ -597,7 +597,7 @@ postgresql_contrib: no
 # [PostGIS] http://postgis.net/
 
 postgresql_postgis: no
-postgresql_postgis_version: 2.1
+postgresql_postgis_version: '2.1'
 
 
 # If enabled, will install the [psycopg2]
