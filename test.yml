@@ -20,5 +20,5 @@
       apt: update_cache=yes
 
   roles:
-    - postgresql    # A symbolic link to the current directory
+    - '.'    # This role itself
 

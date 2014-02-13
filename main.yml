@@ -16,5 +16,5 @@
       apt: update_cache=yes
 
   roles:
-    - .    # This role itself
+    - '.'    # This role itself
 
