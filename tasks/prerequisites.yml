@@ -3,13 +3,8 @@
 - name: Prerequisites for provisioning (libcurl-dev)
   sudo: yes
   apt:
-    name: "{{item}}"
-  with_items:
-    - build-essential
-    - libcurl4-openssl-dev
-    - python-pycurl  # Ansible's ppa module requires this
+    name: python-pycurl  # Ansible's ppa module requires this
   tags:
     - postgresql
     - db
-    - dev
     - deps
