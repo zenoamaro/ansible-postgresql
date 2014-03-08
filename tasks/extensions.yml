@@ -24,6 +24,7 @@
   sudo: yes
   apt:
     name: "postgresql-contrib-{{postgresql_version}}"
+  notify: restart postgresql
   tags:
     - postgresql
     - db
@@ -41,6 +42,7 @@
   with_items:
     - "postgresql-{{postgresql_version}}-postgis-{{postgresql_postgis_version}}"
     - libgeos-c1
+  notify: restart postgresql
   tags:
     - postgresql
     - db
