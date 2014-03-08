@@ -27,9 +27,8 @@
     - repo
 
 - name: APT update
-  when: ansible_pkg_mgr == 'apt'
+  when: ansible_pkg_mgr == 'apt' and (_repo_key.changed or _repo.changed)
   sudo: yes
-  when: _repo_key.changed or _repo.changed
   apt:
     update_cache: yes
   tags:
