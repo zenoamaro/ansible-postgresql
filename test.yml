@@ -11,7 +11,6 @@
     postgresql_dev_headers: yes
     postgresql_contrib: yes
     postgresql_postgis: yes
-    postgresql_python: yes
 
   pre_tasks:
     # Most vagrant boxes have outdated repositories

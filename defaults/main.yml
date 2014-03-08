@@ -600,13 +600,6 @@ postgresql_postgis: no
 postgresql_postgis_version: '2.1'
 
 
-# If enabled, will install the [psycopg2]
-# python driver, globally, via pip.
-# [psycopg2] http://initd.org/psycopg/
-
-postgresql_psycopg2: no
-
-
 # If enabled, this will install the development headers.
 
 postgresql_dev_headers: no
