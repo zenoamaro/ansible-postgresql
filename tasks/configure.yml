@@ -1,5 +1,22 @@
 ---
 
+- name: Create the necessary directories
+  sudo: yes
+  file:
+    dest: "{{item}}"
+    state: directory
+    owner: "{{postgresql_admin_user}}"
+    group: "{{postgresql_admin_group}}"
+  with_items:
+    - "{{postgresql_conf_directory}}"
+    - "{{postgresql_data_directory}}"
+    - "{{postgresql_runtime_directory}}"
+    - "{{postgresql_log_directory}}"
+  tags:
+    - postgresql
+    - db
+    - conf
+
 - name: Configure PostgreSQL
   sudo: yes
   template:
