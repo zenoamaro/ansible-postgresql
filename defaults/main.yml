@@ -6,6 +6,7 @@ postgresql_version: 9.3
 # This will be the main admin user, which is only allowed to connect
 # from localhost, mainly for provisioning, maintenance and scripts.
 postgresql_admin_user: postgres
+postgresql_admin_group: "{{postgresql_admin_user}}"
 
 # TODO: This has been modeled but there's no real support for clusters yet
 postgresql_cluster: main
@@ -23,8 +24,12 @@ postgresql_hba_file: "{{postgresql_conf_directory}}/pg_hba.conf"
 postgresql_ident_file: "{{postgresql_conf_directory}}/pg_ident.conf"
 # Use data in another directory
 postgresql_data_directory: "/var/lib/postgresql/{{postgresql_version}}/{{postgresql_cluster}}"
+# Directory to store runtime data such as PIDs
+postgresql_runtime_directory: "/var/run/postgresql"
 # If external_pid_file is not explicitly set, on extra PID file is written
-postgresql_external_pid_file: "/var/run/postgresql/{{postgresql_version}}-{{postgresql_cluster}}.pid"
+postgresql_external_pid_file: "{{postgresql_runtime_directory}}/{{postgresql_version}}-{{postgresql_cluster}}.pid"
+# Store postgresql's logs files here
+postgresql_log_directory: "/var/log/postgresql"
 
 
 # Connections and authentication
@@ -102,7 +107,7 @@ postgresql_env: {}
 
 # Note:  Increasing max_connections costs ~400 bytes of shared memory per
 # connection slot, plus lock space (see max_locks_per_transaction).
-postgresql_max_connections: 100
+postgresql_max_connections: 1024
 postgresql_superuser_reserved_connections: 3
 
 postgresql_unix_socket_directories: # comma-separated list of directories
@@ -281,12 +286,10 @@ postgresql_log_destination: stderr
 
 # Enable capturing of stderr and csvlog into log files.
 # Required to be on for csvlogs.
-postgresql_logging_collector: off
+postgresql_logging_collector: on
 
 # These are only used if logging_collector is on:
 
-# Directory where log files are written, can be absolute or relative to PGDATA
-postgresql_log_directory: pg_log
 # Log file name pattern, can include strftime() escapes
 postgresql_log_filename: postgresql-%Y-%m-%d_%H%M%S.log
 postgresql_log_file_mode: '0600' # begin with 0 to use octal notation
