@@ -40,7 +40,7 @@ Vagrant.configure '2' do |config|
 	# The only machine available at the moment is "test-ubuntu-precise"
 
 	def apply_test_vm_defaults(config)
-		config.vm.network :private_network, ip: "192.168.33.20"
+		config.vm.network :private_network, ip: "192.168.33.21"
 	end
 
 	def apply_test_ansible_defaults(ansible)
