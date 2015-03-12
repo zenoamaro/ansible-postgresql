@@ -1,6 +1,11 @@
 ---
 
-# Simple, straight playbook for quick PostgreSQL installs
+# Quick-provisioning playbook
+# ---------------------------
+
+# A Simple, straight playbook for quick remote installations.
+# You will be asked which hosts to provision before-hand.
+
 
 - name: 'PostgreSQL'
 
@@ -9,12 +14,6 @@
 
   hosts: "{{selected_hosts}}"
 
-  pre_tasks:
-    # Better safe than sorry
-    - name: APT update
-      sudo: yes
-      apt: update_cache=yes
-
   roles:
-    - '.'    # This role itself
+    - '.'    # The current directory itself is the role
 

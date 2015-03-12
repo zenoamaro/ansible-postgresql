@@ -1,16 +1,15 @@
 ---
 
-# Simple, straight playbook for boxed PostgreSQL installs
+# Boxed installation playbook
+# ---------------------------
+
+# A Simple, straight playbook for producing
+# a boxed installation in a vagrant VM.
+
 
 - name: 'PostgreSQL boxed installation'
 
   hosts: vagrant
-
-  pre_tasks:
-    # Better safe than sorry
-    - name: APT update
-      sudo: yes
-      apt: update_cache=yes
 
   vars:
     postgresql_listen_addresses:
