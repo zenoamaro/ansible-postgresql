@@ -6,7 +6,6 @@
 - name: Adding APT repository key
   when: ansible_os_family == 'Debian'
   sudo: yes
-  register: _repo_key
   apt_key:
     id: ACCC4CF8
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
@@ -18,19 +17,8 @@
 - name: Add PostgreSQL official APT repository
   when: ansible_os_family == 'Debian'
   sudo: yes
-  register: _repo
   apt_repository:
     repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ansible_distribution_release}}-pgdg main"
-  tags:
-    - postgresql
-    - db
-    - repo
-
-- name: APT update
-  when: ansible_pkg_mgr == 'apt' and (_repo_key.changed or _repo.changed)
-  sudo: yes
-  apt:
-    update_cache: yes
   tags:
     - postgresql
     - db
@@ -41,6 +29,9 @@
   sudo: yes
   apt:
     name: "postgresql-{{postgresql_version}}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
   tags:
     - postgresql
     - db
