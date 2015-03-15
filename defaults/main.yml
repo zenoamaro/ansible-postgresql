@@ -1,7 +1,6 @@
 ---
 
-# Only `9.3` is supported as of now
-postgresql_version: 9.3
+postgresql_version: 9.4
 
 # This will be the main admin user, which is only allowed to connect
 # from localhost, mainly for provisioning, maintenance and scripts.
@@ -144,7 +143,6 @@ postgresql_db_user_namespace: off
 
 # Kerberos and GSSAPI
 postgresql_krb_server_keyfile: ''
-postgresql_krb_srvname: postgres
 postgresql_krb_caseins_users: off
 
 # TCP Keepalives, 0 selects the system default
