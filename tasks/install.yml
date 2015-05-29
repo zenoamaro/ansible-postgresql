@@ -36,3 +36,16 @@
     - postgresql
     - db
     - deps
+
+- name: Install dependencies for the Ansible module
+  when: ansible_os_family == 'Debian'
+  sudo: yes
+  apt:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - python-psycopg2
+  tags:
+    - postgresql
+    - db
+    - deps
