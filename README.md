@@ -12,6 +12,7 @@ Supports
 --------
 Supported PostgreSQL versions:
 
+- PostgreSQL 9.4
 - PostgreSQL 9.3
 
 Supported targets:
@@ -27,7 +28,7 @@ Installation methods:
 Available extensions (under a switch):
 
 - Development headers - `postgresql_dev_headers`
-- The [psycopg2](http://initd.org/psycopg/) driver for Python - `postgresql_psycopg2`
+- Contrib modules - `postgresql_contrib`
 - [PostGIS](http://postgis.net/) - `postgresql_postgis`
 
 
