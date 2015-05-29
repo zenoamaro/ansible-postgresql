@@ -81,6 +81,9 @@ Still to do
 
 Changelog
 ---------
+### 0.1.2
+- Installing less dependencies, and later in the process.
+
 ### 0.1.1
 - The package list is not being updated in playbooks anymore.
 - Added more test machines.
