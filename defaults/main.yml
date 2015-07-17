@@ -2,7 +2,8 @@
 
 postgresql_version: 9.4
 
-# Locale.
+# Locale and encoding.
+postgresql_encoding: 'UTF-8'
 postgresql_locale: 'en_US.UTF-8'
 
 # This will be the main admin user, which is only allowed to connect
@@ -11,7 +12,10 @@ postgresql_admin_user: postgres
 postgresql_admin_group: "{{postgresql_admin_user}}"
 
 # TODO: This has been modeled but there's no real support for clusters yet
-postgresql_cluster: main
+postgresql_cluster_name: main
+
+# WARNING: This will drop your current cluster.
+postgresql_recreate_cluster: no
 
 
 # File locations
@@ -19,17 +23,17 @@ postgresql_cluster: main
 
 
 # Store postgres' configuration files here
-postgresql_conf_directory: "/etc/postgresql/{{postgresql_version}}/{{postgresql_cluster}}"
+postgresql_conf_directory: "/etc/postgresql/{{postgresql_version}}/{{postgresql_cluster_name}}"
 # Host-based authentication file
 postgresql_hba_file: "{{postgresql_conf_directory}}/pg_hba.conf"
 # Ident configuration file
 postgresql_ident_file: "{{postgresql_conf_directory}}/pg_ident.conf"
 # Use data in another directory
-postgresql_data_directory: "/var/lib/postgresql/{{postgresql_version}}/{{postgresql_cluster}}"
+postgresql_data_directory: "/var/lib/postgresql/{{postgresql_version}}/{{postgresql_cluster_name}}"
 # Directory to store runtime data such as PIDs
 postgresql_runtime_directory: "/var/run/postgresql"
 # If external_pid_file is not explicitly set, on extra PID file is written
-postgresql_external_pid_file: "{{postgresql_runtime_directory}}/{{postgresql_version}}-{{postgresql_cluster}}.pid"
+postgresql_external_pid_file: "{{postgresql_runtime_directory}}/{{postgresql_version}}-{{postgresql_cluster_name}}.pid"
 # Store postgresql's logs files here
 postgresql_log_directory: "/var/log/postgresql"
 
