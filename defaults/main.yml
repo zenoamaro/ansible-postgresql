@@ -2,6 +2,9 @@
 
 postgresql_version: 9.4
 
+# Locale.
+postgresql_locale: 'en_US.UTF-8'
+
 # This will be the main admin user, which is only allowed to connect
 # from localhost, mainly for provisioning, maintenance and scripts.
 postgresql_admin_user: postgres

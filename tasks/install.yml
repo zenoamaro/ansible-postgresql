@@ -1,5 +1,15 @@
 ---
 
+- name: Generate the locale
+  sudo: yes
+  locale_gen:
+    name: "{{postgresql_locale}}"
+    state: present
+  tags:
+    - postgresql
+    - db
+    - conf
+
 # Official PostgreSQL [repository] for debian-based distributions
 # [repository]: http://www.postgresql.org/download/
 
