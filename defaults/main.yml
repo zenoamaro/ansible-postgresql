@@ -1,6 +1,6 @@
 ---
 
-postgresql_version: 9.4
+postgresql_version: 9.5
 
 # This will be the main admin user, which is only allowed to connect
 # from localhost, mainly for provisioning, maintenance and scripts.
@@ -133,7 +133,6 @@ postgresql_ssl_ciphers:
   - '!EXP'
   - '!MD5'
   - '@STRENGTH'
-postgresql_ssl_renegotiation_limit: 512MB # amount of data between renegotiations
 postgresql_ssl_cert_file: /etc/ssl/certs/ssl-cert-snakeoil.pem
 postgresql_ssl_key_file: /etc/ssl/private/ssl-cert-snakeoil.key
 postgresql_ssl_ca_file: ''
@@ -220,7 +219,6 @@ postgresql_wal_writer_delay: 200ms  # 1-10000 milliseconds
 postgresql_commit_delay:     0      # range 0-100000, in microseconds
 postgresql_commit_siblings:  5      # range 1-1000
 
-postgresql_checkpoint_segments:          3     # in logfile segments, min 1, 16MB each
 postgresql_checkpoint_timeout:           5min  # range 30s-1h
 postgresql_checkpoint_completion_target: 0.5   # checkpoint target duration, 0.0 - 1.0
 postgresql_checkpoint_warning:           30s   # 0 disables
@@ -598,7 +596,7 @@ postgresql_contrib: no
 # [PostGIS] http://postgis.net/
 
 postgresql_postgis: no
-postgresql_postgis_version: '2.1'
+postgresql_postgis_version: 2.2
 
 
 # If enabled, this will install the development headers.
