@@ -12,6 +12,7 @@ Supports
 --------
 Supported PostgreSQL versions:
 
+- PostgreSQL 9.5
 - PostgreSQL 9.4
 - PostgreSQL 9.3
 
@@ -81,6 +82,11 @@ Still to do
 
 Changelog
 ---------
+### 0.2.0
+- Updated default version to PostgreSQL 9.5.
+- Removed unsupported `checkpoint_segments` configuration
+- Removed unsupported `ssl_renegotiation_limit` configuration
+
 ### 0.1.2
 - Installing less dependencies, and later in the process.
 
@@ -96,7 +102,7 @@ License
 -------
 The MIT License (MIT)
 
-Copyright (c) 2015, zenoamaro <zenoamaro@gmail.com>
+Copyright (c) 2016, zenoamaro <zenoamaro@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

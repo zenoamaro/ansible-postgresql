@@ -3,7 +3,7 @@
 galaxy_info:
   author: zenoamaro
   description: A role for installing and configuring PostgreSQL
-  version: 0.1.2
+  version: 0.2.0
   license: MIT
   min_ansible_version: 1.4
 
