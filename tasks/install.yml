@@ -1,5 +1,25 @@
 ---
 
+- name: Generate the locale
+  sudo: yes
+  locale_gen:
+    name: "{{postgresql_locale}}"
+    state: present
+  tags:
+    - postgresql
+    - db
+    - conf
+
+- name: Check if the data directory exists
+  sudo: yes
+  stat:
+    path:  "{{postgresql_data_directory}}"
+  register: postgresql_data_directory_state
+  tags:
+    - postgresql
+    - db
+    - conf
+
 # Official PostgreSQL [repository] for debian-based distributions
 # [repository]: http://www.postgresql.org/download/
 

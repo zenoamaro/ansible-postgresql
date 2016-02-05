@@ -1,0 +1,33 @@
+---
+
+- name: Ensure the data directory is secure
+  sudo: yes
+  file:
+    dest:  "{{postgresql_data_directory}}"
+    owner: "{{postgresql_admin_user}}"
+    group: "{{postgresql_admin_group}}"
+    mode:  0700
+  tags:
+    - postgresql
+    - db
+    - conf
+
+- name: Drop the existing cluster
+  sudo: yes
+  shell: "pg_dropcluster --stop {{postgresql_version}} {{postgresql_cluster_name}}"
+  when: postgresql_recreate_cluster or not postgresql_data_directory_state.stat.exists
+  notify: restart postgresql
+  tags:
+    - postgresql
+    - db
+    - conf
+
+- name: Create a new cluster
+  sudo: yes
+  shell: "pg_createcluster --start --locale {{postgresql_locale}} -e {{postgresql_encoding}} -d {{postgresql_data_directory}} {{postgresql_version}} {{postgresql_cluster_name}}"
+  when: postgresql_recreate_cluster or not postgresql_data_directory_state.stat.exists
+  notify: restart postgresql
+  tags:
+    - postgresql
+    - db
+    - conf
