@@ -6,7 +6,7 @@
 
 - name: Install development headers
   when: postgresql_dev_headers == True
-  sudo: yes
+  become: yes
   apt:
     name: libpq-dev
   tags:
@@ -21,7 +21,7 @@
 
 - name: Install PostgreSQL contribs
   when: postgresql_contrib
-  sudo: yes
+  become: yes
   apt:
     name: "postgresql-contrib-{{postgresql_version}}"
   notify: restart postgresql
@@ -36,7 +36,7 @@
 
 - name: Add postgis extensions
   when: postgresql_postgis
-  sudo: yes
+  become: yes
   apt:
     name: "{{item}}"
   with_items:
