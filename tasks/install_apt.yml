@@ -4,7 +4,6 @@
 # [repository]: http://www.postgresql.org/download/
 
 - name: Adding APT repository key
-  when: ansible_os_family == 'Debian'
   become: yes
   apt_key:
     id: ACCC4CF8
@@ -15,7 +14,6 @@
     - repo
 
 - name: Add PostgreSQL official APT repository
-  when: ansible_os_family == 'Debian'
   become: yes
   apt_repository:
     repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ansible_distribution_release}}-pgdg main"
@@ -25,7 +23,6 @@
     - repo
 
 - name: Install PostgreSQL
-  when: ansible_os_family == 'Debian'
   become: yes
   apt:
     name: "postgresql-{{postgresql_version}}"
@@ -38,7 +35,6 @@
     - deps
 
 - name: Install dependencies for the Ansible module
-  when: ansible_os_family == 'Debian'
   become: yes
   apt:
     name: "{{item}}"
